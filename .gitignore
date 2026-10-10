@@ -1,7 +1,8 @@
 .DS_Store
 
+# Python cache
 __pycache__/
-
+*.py[cod]
 
 # Datasets
 *.csv
@@ -13,9 +14,13 @@ __pycache__/
 *.safetensors
 *.pkl
 
-# Virtual environment
+# Virtual environments
 venv/
 .venv/
 
-# Environment variables
+# Environment variables and secrets
 .env
+.env.*
+!.env.example
+secrets.toml
+.streamlit/secrets.toml
