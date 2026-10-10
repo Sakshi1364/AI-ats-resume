@@ -23,4 +23,8 @@ venv/
 .env.*
 !.env.example
 secrets.toml
+
 .streamlit/secrets.toml
+
+# Local ML model files
+backend/ml_model/

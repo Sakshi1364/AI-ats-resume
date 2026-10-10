@@ -34,10 +34,8 @@ SUPPORTED_MIME_TYPES = {
 SUPPORTED_EXTENSIONS = {'.pdf', '.doc', '.docx'}
 
 SPACY_MODEL_PRIMARY="en_core_web_md" #better accuracy
-SPACY_MODEL_SECONDARY='"en_core_web_sm' 
-SENTENCE_TRANSFORMER_MODEL = str(
-    Path(__file__).resolve().parent.parent / "ml_model"
-)
+SPACY_MODEL_SECONDARY="en_core_web_sm" 
+SENTENCE_TRANSFORMER_MODEL = "Sakshi09876/ats-resume-finetuned"
 
 # Score component weights — this is business logic treated as config
 SCORE_WEIGHTS = {
