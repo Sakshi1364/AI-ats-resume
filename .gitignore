@@ -12,3 +12,10 @@ __pycache__/
 # ML models
 *.safetensors
 *.pkl
+
+# Virtual environment
+venv/
+.venv/
+
+# Environment variables
+.env
