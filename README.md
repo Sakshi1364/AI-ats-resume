@@ -1,102 +1,91 @@
-# ATS Resume Scorer
+# 📄 AI ATS Resume Analyzer
 
-A web app that scores how well a resume matches a job description and returns actionable feedback. Built with FastAPI + Streamlit, using spaCy and Sentence Transformers for NLP and the Groq API for LLM-generated suggestions.
+An AI-powered resume analysis tool designed to help job seekers evaluate their resumes, identify improvement areas, and optimize their profiles for Applicant Tracking Systems (ATS).
 
-## What it does
+## 📌 Overview
 
-1. Upload a resume (PDF / DOC / DOCX) and paste a job description.
-2. The backend parses the resume, extracts skills and experience, and compares them to the JD using semantic similarity.
-3. You get an ATS score, a breakdown by category (formatting, keywords, content, skill validation, ATS compatibility), and LLM-written suggestions for what to improve.
-4. Past analyses are saved to your account so you can revisit them.
+**AI ATS Resume Analyzer** is a project focused on improving the resume-building and job application process using artificial intelligence and automation. It aims to help users understand how well their resumes align with job requirements and identify opportunities to improve their resumes for better readability and relevance.
 
-## Tech stack
+## ✨ Features
 
-- **Frontend:** Streamlit
-- **Backend:** FastAPI (Python)
-- **NLP:** spaCy (`en_core_web_md`), Sentence Transformers (`all-MiniLM-L6-v2`)
-- **LLM:** Groq API (Llama 3)
-- **Auth + Database:** Supabase (email/password and Google OAuth)
-- **PDF report export:** WeasyPrint + Jinja2
+- 📄 **Resume Analysis** — Analyze resume content and structure.
+- 🤖 **AI-Powered Insights** — Use AI to assist with resume evaluation.
+- 🎯 **ATS Optimization** — Help identify areas for improving ATS compatibility.
+- 🔍 **Keyword Analysis** — Highlight the importance of relevant skills and job-specific keywords.
+- 💡 **Improvement Suggestions** — Support resume refinement with actionable feedback.
+- 🚀 **Career Support** — Help job seekers prepare stronger, more targeted resumes.
 
-## Project structure
+## 🛠️ Tech Stack
 
-```
-ATS_SCORER/
-├── backend/              FastAPI app, NLP services, API routes
-├── frontend/             Streamlit app, views, components
-├── jupyter notebooks/    Research and dataset prep (not used at runtime)
-├── ml model/             Exported ML artifacts
-├── requirements.txt      Combined backend + frontend dependencies
-└── .env.example          Template for environment variables
-```
+- **Programming Language:** Python
+- **AI/NLP:** Artificial Intelligence and Natural Language Processing
+- **Version Control:** Git and GitHub
 
-## Setup
+## 💻 Installation and Setup
 
-### 1. Clone and create a virtual environment
+### 1. Clone the Repository
 
 ```bash
-git clone <repo-url>
-cd ATS_SCORER
-python -m venv venv
-source venv/bin/activate         # Windows: venv\Scripts\activate
+git clone https://github.com/Sakshi1364/AI-ats-resume.git
 ```
 
-### 2. Install dependencies
+### 2. Navigate to the Project Directory
+
+```bash
+cd AI-ats-resume
+```
+
+### 3. Create a Virtual Environment
+
+```bash
+python -m venv venv
+```
+
+### 4. Activate the Virtual Environment
+
+**Windows Command Prompt:**
+
+```cmd
+venv\Scripts\activate
+```
+
+**Windows PowerShell:**
+
+```powershell
+.\venv\Scripts\Activate.ps1
+```
+
+### 5. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
-python -m spacy download en_core_web_md
 ```
 
-WeasyPrint needs system libraries on Linux:
+### 6. Run the Application
 
-```bash
-# Fedora
-sudo dnf install -y cairo pango gdk-pixbuf2 libffi
+Run the project's main application file using the appropriate command for your setup.
 
-# Debian / Ubuntu
-sudo apt install -y libcairo2 libpango-1.0-0 libpangoft2-1.0-0 libffi-dev
-```
+## 🎯 Project Objective
 
-### 3. Configure environment variables
+The objective of AI ATS Resume Analyzer is to explore how artificial intelligence can simplify resume evaluation, improve job-specific keyword alignment, and help candidates create clearer, more relevant resumes for job applications.
 
-Copy the template and fill in your keys:
+## 🔮 Future Enhancements
 
-```bash
-cp .env.example .env
-```
+- Resume-to-job-description matching
+- ATS compatibility scoring
+- Skill gap identification
+- Resume improvement recommendations
+- Support for multiple resume formats
+- Downloadable resume analysis reports
 
-You need:
+## 👩‍💻 Author
 
-- A **Supabase** project — grab `SUPABASE_URL`, `SUPABASE_KEY` (service role), and `SUPABASE_ANON_KEY` from Project Settings → API.
-- A **Groq** API key from [console.groq.com](https://console.groq.com).
-- (Optional) Google OAuth set up in the Supabase dashboard if you want Google sign-in.
+**Sakshi Agrawal**
 
-The Streamlit frontend also reads Supabase config from `frontend/.streamlit/secrets.toml`. Copy `secrets.toml.example` to `secrets.toml` and fill it in.
+- GitHub: [@Sakshi1364](https://github.com/Sakshi1364)
+- Project Repository: [AI ATS Resume Analyzer](https://github.com/Sakshi1364/AI-ats-resume)
 
-### 4. Run the backend
+---
 
-From the project root:
+⭐ If you find this project useful, consider giving the repository a star!
 
-```bash
-uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
-```
-
-The API is now at `http://localhost:8000`.
-
-### 5. Run the frontend
-
-In a new terminal (with the venv activated):
-
-```bash
-streamlit run frontend/streamlit_app.py
-```
-
-The app opens at `http://localhost:8501`.
-
-## Notes for students
-
-- **Never commit `.env` or `secrets.toml`** — they hold API keys. Both are in `.gitignore`; check before you push.
-- The first run downloads the Sentence Transformer model (~80 MB). It's cached afterwards.
-- If you don't have a Groq key yet, the scoring still works — only the LLM suggestions section will be empty.
-- `jupyter notebooks/` and `ml model/` are for experimentation and aren't required to run the app.
